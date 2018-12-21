@@ -1,0 +1,40 @@
+=== Intrusion Detection Systems
+
+NOTE: Using indicators of compromise for an Intrusion Detection capability can be a challenging task. It is important to keep in mind there is no solution that fits all, but only the solution that is adapted to your specific environment (technical and organizational).
+
+A threat intelligence platform like MISP contains a massive amount of indicators of compromise (IOCs). These could be used to detect existing infections in your network, but also to help discover new attacks. It is although important to keep in mind the objective is not to replace the existing tools or products, but to enhance or complement them with an extra layer of visibility. We will therefore take our IOCs and load them in our various Intrusion Detection Systems (IDS). The question however is "how"?
+
+
+==== Types of IDS
+
+Traditionally an Intrusion Detection System (IDS) was understood to be a Network IDS. Today, more and more practitioners understand that an IDS can be in many forms. Each system has its own strengths and weaknesses and also only compatible with a subset of the IOCs.
+
+
+.Network IDS
+The Network-based IDS or NIDS is a device that receives a copy of network traffic (in-line or out-of-band) and generates alerts based on a predefined rule-set. Many NIDS are often placed on the perimeter of networks. While this simple topology is a strength of a NIDS, as a single device or cluster can cover a large network, it is also one of the weaknesses. If placed on the perimeter it will not give you visibility on what happens inside the network or on the hosts. Another growing weakness is the massive adoption of encryption on the network rendering the NIDS partially blind for this traffic.
+
+Usable IOCs could be: hostname/domain, ip, email, url, x509 certificate, pattern-in-traffic, ...
+
+
+.Log IDS
+The Log-based IDS or LIDS is a device that generates alerts based on collected logs. Many Security Information and Event Management systems (SIEM) are often working as a LIDS.
+Logs can come from network devices such as firewalls, routers, switches, DHCP and DNS servers, but also from application servers like web servers, mail servers and relays, proxies, ..., but also from the hosts.
+
+Logs can be relatively easy to collect for central devices, but more challenging for server and workstation system logs. Much of the limitations will be with which data is included in the log. (example: if the user-agent is not included in webserver logs)
+
+Usable IOCs could be: hostname/domain, ip, email, user-agent, url, ...
+
+
+.Host IDS
+The Host-based IDS or HIDS is a component installed on the endpoints; servers, workstations, and such. It is monitoring and analyzing the internals of a computer system.
+
+A host IDS can give a massive visibility, however deployment and management of it is much more complex than the other types of IDS.
+
+Usable IOCs could be: checksum, filename/path, mutex, yara-rule, hostname/domain, ip, email, ...
+
+
+==== The choice of the IOCs
+
+TODO : discussion about how to select which IOCs (ref to IDS type above), but also how to balance false-positives/false-negatives, expiration, ... using intelligence tagging, threat level, source reputation as additional criteria.
+TODO: discuss feedback loop
+TODO: sightings
